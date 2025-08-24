@@ -1,0 +1,39 @@
+# Ignore build outputs
+bin/
+obj/
+
+# Ignore user-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Ignore Visual Studio cache/options
+.vs/
+
+# Ignore build results
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+
+# Ignore EF Core Migrations model snapshots if not needed
+# (Uncomment if you don't want to track them)
+# *ModelSnapshot.cs
+
+# Ignore NuGet packages
+*.nupkg
+*.snupkg
+packages/
+*.nuget.props
+*.nuget.targets
+
+# Ignore Rider / JetBrains IDE files
+.idea/
+
+# Ignore temporary files
+~$*
+*.tmp
+*.temp
