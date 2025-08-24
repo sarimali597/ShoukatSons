@@ -1,0 +1,30 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build-and-package:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Install MSIX tool
+        run: dotnet tool install -g Microsoft.DotNet.Msix.Tool
+
+      - name: Build & Migrate
+        run: pwsh ./build.ps1 -Configuration Release
+
+      - name: Upload MSIX Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ShoukatSonsGarments.msix
+          path: artifacts/ShoukatSonsGarments.msix
