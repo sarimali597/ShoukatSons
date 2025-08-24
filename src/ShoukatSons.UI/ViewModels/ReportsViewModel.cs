@@ -1,4 +1,9 @@
+using CommunityToolkit.Mvvm.ComponentModel;
+
 namespace ShoukatSons.UI.ViewModels
 {
-    public class ReportsViewModel { }
+    public partial class ReportsViewModel : ObservableObject
+    {
+        [ObservableProperty] private string message = "Reports Screen coming soon...";
+    }
 }

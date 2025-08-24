@@ -1,41 +1,49 @@
-// File: src/ShoukatSons.UI/Services/LowStockAlertService.cs
-using Microsoft.Extensions.Hosting;
-using ShoukatSons.Core.Models;
-using ShoukatSons.Services;
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
+using ShoukatSons.Services;
+using ShoukatSons.Services.Models;
 
 namespace ShoukatSons.UI.Services
 {
     public class LowStockAlertService : BackgroundService
     {
-        private readonly IStockAlertService _stockAlertService;
+        private readonly IStockAlertService _stockAlerts;
+        private readonly IAlertPublisher _publisher;
 
-        public LowStockAlertService(IStockAlertService stockAlertService)
+        public LowStockAlertService(IStockAlertService stockAlertService, IAlertPublisher publisher)
         {
-            _stockAlertService = stockAlertService;
+            _stockAlerts = stockAlertService;
+            _publisher = publisher;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            // Initial delay to let UI start
+            await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
+
             while (!stoppingToken.IsCancellationRequested)
             {
-                var alerts = await _stockAlertService.CheckLowStockAsync();
-
-                foreach (var alert in alerts)
+                try
                 {
-                    var coreAlert = new StockAlert
+                    var alerts = await _stockAlerts.CheckLowStockAsync();
+                    foreach (var a in alerts)
                     {
-                        Id = alert.Id, // already Guid
-                        ProductId = alert.ProductId,
-                        Message = alert.Message,
-                        Quantity = alert.Quantity,
-                        AlertedAt = alert.AlertedAt
-                    };
-
-                    // TODO: push coreAlert to your notification hub / UI
+                        var dto = new StockAlertDto
+                        {
+                            Id = a.Id,
+                            ProductId = a.ProductId,
+                            Message = a.Message,
+                            Quantity = a.Quantity,
+                            AlertedAt = a.AlertedAt
+                        };
+                        _publisher.Publish(dto);
+                    }
+                }
+                catch
+                {
+                    // swallow and continue
                 }
 
                 await Task.Delay(TimeSpan.FromMinutes(30), stoppingToken);

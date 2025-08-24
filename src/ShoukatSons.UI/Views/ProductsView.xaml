@@ -2,8 +2,6 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Products" Height="500" Width="900" WindowStartupLocation="CenterScreen">
-
-    <!-- Border added so that Padding works -->
     <Border Background="#F7F7F7" Padding="10">
         <Grid>
             <Grid.RowDefinitions>
@@ -13,30 +11,27 @@
 
             <!-- Header Buttons -->
             <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
-                <Button Content="➕ Add" Width="80" Margin="0 0 5 0" Click="Add_Click"/>
-                <Button Content="✏ Edit" Width="80" Margin="0 0 5 0" Click="Edit_Click"/>
-                <Button Content="🗑 Delete" Width="80" Click="Delete_Click"/>
+                <Button Content="➕ Add" Width="80" Margin="0 0 5 0" Command="{Binding AddProductCommand}"/>
+                <Button Content="✏ Edit" Width="80" Margin="0 0 5 0" Command="{Binding EditProductCommand}"/>
+                <Button Content="🗑 Delete" Width="80" Command="{Binding DeleteProductCommand}"/>
             </StackPanel>
 
             <!-- Products List -->
-            <DataGrid x:Name="ProductsGrid"
-                      Grid.Row="1"
+            <DataGrid Grid.Row="1"
                       AutoGenerateColumns="False"
                       SelectionMode="Single"
                       CanUserAddRows="False"
                       IsReadOnly="True"
-                      HeadersVisibility="Column">
+                      HeadersVisibility="Column"
+                      ItemsSource="{Binding Products}"
+                      SelectedItem="{Binding SelectedProduct, Mode=TwoWay}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
                     <DataGridTextColumn Header="Barcode" Binding="{Binding Barcode}" Width="120"/>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
-                    <DataGridTextColumn Header="Category" Binding="{Binding Category.Name}" Width="150"/>
-                    <DataGridTextColumn Header="Purchase Price"
-                                        Width="120"
-                                        Binding="{Binding PurchasePrice, StringFormat=N0}"/>
-                    <DataGridTextColumn Header="Sale Price"
-                                        Width="120"
-                                        Binding="{Binding SalePrice, StringFormat=N0}"/>
+                    <DataGridTextColumn Header="Category" Binding="{Binding CategoryName}" Width="150"/>
+                    <DataGridTextColumn Header="Purchase Price" Width="120" Binding="{Binding PurchasePrice, StringFormat=N0}"/>
+                    <DataGridTextColumn Header="Sale Price" Width="120" Binding="{Binding SalePrice, StringFormat=N0}"/>
                     <DataGridTextColumn Header="Stock" Binding="{Binding StockQuantity}" Width="80"/>
                     <DataGridTextColumn Header="Size" Binding="{Binding Size}" Width="80"/>
                     <DataGridTextColumn Header="Color" Binding="{Binding Color}" Width="80"/>

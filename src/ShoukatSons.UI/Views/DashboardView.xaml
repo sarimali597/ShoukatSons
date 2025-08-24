@@ -31,35 +31,35 @@
                 <UniformGrid Rows="2" Columns="3" Margin="4"
                              HorizontalAlignment="Center" VerticalAlignment="Center">
 
-                    <Button x:Name="BtnProducts" Content="_Products"
-                            Click="Products_Click"
+                    <Button Content="_Products"
                             FontSize="16" Margin="10" Padding="10"
-                            ToolTip="Manage products"/>
+                            ToolTip="Manage products"
+                            Command="{Binding ManageProductsCommand}"/>
 
-                    <Button x:Name="BtnPOS" Content="_POS"
-                            Click="POS_Click"
+                    <Button Content="_POS"
                             FontSize="16" Margin="10" Padding="10"
-                            ToolTip="Open point of sale"/>
+                            ToolTip="Open point of sale"
+                            Command="{Binding OpenPOSCommand}"/>
 
-                    <Button x:Name="BtnBarcode" Content="_Label Generator"
-                            Click="BarcodePrint_Click"
+                    <Button Content="_Label Generator"
                             FontSize="16" Margin="10" Padding="10"
-                            ToolTip="Generate and print product labels"/>
+                            ToolTip="Generate and print product labels"
+                            Command="{Binding LabelGeneratorCommand}"/>
 
-                    <Button x:Name="BtnReports" Content="_Reports"
-                            Click="Reports_Click"
+                    <Button Content="_Reports"
                             FontSize="16" Margin="10" Padding="10"
-                            ToolTip="View reports"/>
+                            ToolTip="View reports"
+                            Command="{Binding ReportsCommand}"/>
 
-                    <Button x:Name="BtnSettings" Content="_Settings"
-                            Click="Settings_Click"
+                    <Button Content="_Settings"
                             FontSize="16" Margin="10" Padding="10"
-                            ToolTip="Application settings"/>
+                            ToolTip="Application settings"
+                            Command="{Binding SettingsCommand}"/>
 
-                    <Button x:Name="BtnExit" Content="E_xit"
-                            Click="Exit_Click"
+                    <Button Content="E_xit"
                             FontSize="16" Margin="10" Padding="10"
-                            ToolTip="Close the application"/>
+                            ToolTip="Close the application"
+                            Command="{Binding ExitCommand}"/>
                 </UniformGrid>
             </Border>
 
@@ -106,7 +106,7 @@
                                             <Border BorderBrush="#F0F0F0" BorderThickness="0,0,0,1" Padding="8">
                                                 <DockPanel LastChildFill="False">
                                                     <StackPanel Orientation="Vertical" DockPanel.Dock="Left" Width="180">
-                                                        <TextBlock Text="{Binding Product.Name}" FontWeight="SemiBold" Foreground="#2E3A59"/>
+                                                        <TextBlock Text="{Binding Message}" FontWeight="SemiBold" Foreground="#2E3A59"/>
                                                         <TextBlock Text="{Binding AlertedAt, StringFormat='{}{0:dd MMM, HH:mm}'}" Foreground="#6B7280" FontSize="12"/>
                                                     </StackPanel>
 

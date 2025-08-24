@@ -1,17 +1,52 @@
-using System.Windows; // WPF message boxes
-using MessageBox = System.Windows.MessageBox; // 👈 explicitly alias WPF MessageBox
+// ─────────────────────────────────────────────────────
+// File: Services/DialogService.cs
+// ─────────────────────────────────────────────────────
+using ShoukatSons.UI.Services.Interfaces;
+using WpfMessageBox       = System.Windows.MessageBox;
+using WpfMessageBoxButton = System.Windows.MessageBoxButton;
+using WpfMessageBoxImage  = System.Windows.MessageBoxImage;
+using WpfMessageBoxResult = System.Windows.MessageBoxResult;
 
 namespace ShoukatSons.UI.Services
 {
-    public class DialogService
+    public class DialogService : IDialogService
     {
-        public void Info(string message, string title = "Info") =>
-            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Information);
+        public void Info(
+            string message,
+            string title = "Info") =>
+            WpfMessageBox.Show(
+                message,
+                title,
+                WpfMessageBoxButton.OK,
+                WpfMessageBoxImage.Information);
 
-        public void Error(string message, string title = "Error") =>
-            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Error);
+        public void Warn(
+            string message,
+            string title = "Warning") =>
+            WpfMessageBox.Show(
+                message,
+                title,
+                WpfMessageBoxButton.OK,
+                WpfMessageBoxImage.Warning);
 
-        public bool Confirm(string message, string title = "Confirm") =>
-            MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes;
+        public void Error(
+            string message,
+            string title = "Error") =>
+            WpfMessageBox.Show(
+                message,
+                title,
+                WpfMessageBoxButton.OK,
+                WpfMessageBoxImage.Error);
+
+        public bool Confirm(
+            string message,
+            string title = "Confirm",
+            WpfMessageBoxButton buttons = WpfMessageBoxButton.YesNo) =>
+            WpfMessageBox.Show(
+                message,
+                title,
+                buttons,
+                WpfMessageBoxImage.Question)
+            == WpfMessageBoxResult.Yes;
     }
 }

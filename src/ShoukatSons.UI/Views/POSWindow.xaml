@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Point of Sale" Height="600" Width="900"
         WindowStartupLocation="CenterOwner">
-
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -13,62 +12,23 @@
 
         <!-- Top: Barcode Entry -->
         <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
-            <!-- Watermark TextBox (no converter needed) -->
-            <Grid Width="220" Margin="0,0,10,0">
-                <TextBox x:Name="TxtBarcode"/>
-                <TextBlock Text="Scan or enter barcode"
-                           Foreground="Gray"
-                           Margin="6,3,0,0"
-                           VerticalAlignment="Center"
-                           IsHitTestVisible="False">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Visibility" Value="Visible"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Text, ElementName=TxtBarcode}" Value="">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Text, ElementName=TxtBarcode}" Value="{x:Null}">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Text, ElementName=TxtBarcode}">
-                                    <DataTrigger.Value>
-                                        <!-- Any non-empty text collapses the watermark -->
-                                        <x:Static Member="x:String.Empty"/>
-                                    </DataTrigger.Value>
-                                    <!-- This trigger is redundant with the first but kept for clarity -->
-                                </DataTrigger>
-                                <!-- If text is not empty -->
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding Text, ElementName=TxtBarcode}" Value="{x:Null}"/>
-                                    </MultiDataTrigger.Conditions>
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </MultiDataTrigger>
-                                <DataTrigger Binding="{Binding Text.Length, ElementName=TxtBarcode}" Value="0">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Text.Length, ElementName=TxtBarcode}" Value="{x:Null}">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Text.Length, ElementName=TxtBarcode}" Value="1">
-                                    <Setter Property="Visibility" Value="Collapsed"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
-            </Grid>
-
-            <Button Content="Add" Width="100" Click="Add_Click"/>
+            <TextBox Width="220"
+                     Margin="0,0,10,0"
+                     Text="{Binding Barcode, UpdateSourceTrigger=PropertyChanged}">
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Enter" Command="{Binding AddItemCommand}" />
+                </TextBox.InputBindings>
+            </TextBox>
+            <Button Content="Add" Width="100" Command="{Binding AddItemCommand}"/>
         </StackPanel>
 
         <!-- Middle: Cart Items -->
-        <DataGrid x:Name="CartGrid" Grid.Row="1"
+        <DataGrid Grid.Row="1"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
                   HeadersVisibility="Column"
-                  IsReadOnly="True">
+                  IsReadOnly="True"
+                  ItemsSource="{Binding CartItems}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Barcode" Binding="{Binding Barcode}" Width="*"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="2*"/>
@@ -89,9 +49,10 @@
         <!-- Bottom: Total & Buttons -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
             <TextBlock Text="Total: " FontSize="18" VerticalAlignment="Center"/>
-            <TextBlock x:Name="TxtTotal" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="5,0,20,0"/>
-            <Button Content="Checkout" Width="120" Click="Checkout_Click" Margin="0,0,5,0"/>
-            <Button Content="Close" Width="80" Click="Close_Click"/>
+            <TextBlock Text="{Binding Total, StringFormat=N2}"
+                       FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="5,0,20,0"/>
+            <Button Content="Checkout" Width="120" Command="{Binding CheckoutCommand}" Margin="0,0,5,0"/>
+            <Button Content="Close" Width="80" Command="{Binding CloseCommand}"/>
         </StackPanel>
     </Grid>
 </Window>
