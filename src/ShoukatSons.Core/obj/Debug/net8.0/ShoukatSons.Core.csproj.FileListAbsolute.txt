@@ -1,0 +1,11 @@
+C:\ShoukatSons\src\ShoukatSons.Core\bin\Debug\net8.0\ShoukatSons.Core.deps.json
+C:\ShoukatSons\src\ShoukatSons.Core\bin\Debug\net8.0\ShoukatSons.Core.dll
+C:\ShoukatSons\src\ShoukatSons.Core\bin\Debug\net8.0\ShoukatSons.Core.pdb
+C:\ShoukatSons\src\ShoukatSons.Core\obj\Debug\net8.0\ShoukatSons.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\ShoukatSons\src\ShoukatSons.Core\obj\Debug\net8.0\ShoukatSons.Core.AssemblyInfoInputs.cache
+C:\ShoukatSons\src\ShoukatSons.Core\obj\Debug\net8.0\ShoukatSons.Core.AssemblyInfo.cs
+C:\ShoukatSons\src\ShoukatSons.Core\obj\Debug\net8.0\ShoukatSons.Core.csproj.CoreCompileInputs.cache
+C:\ShoukatSons\src\ShoukatSons.Core\obj\Debug\net8.0\ShoukatSons.Core.dll
+C:\ShoukatSons\src\ShoukatSons.Core\obj\Debug\net8.0\refint\ShoukatSons.Core.dll
+C:\ShoukatSons\src\ShoukatSons.Core\obj\Debug\net8.0\ShoukatSons.Core.pdb
+C:\ShoukatSons\src\ShoukatSons.Core\obj\Debug\net8.0\ref\ShoukatSons.Core.dll

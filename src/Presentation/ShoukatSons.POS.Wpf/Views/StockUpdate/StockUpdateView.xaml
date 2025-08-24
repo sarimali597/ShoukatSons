@@ -1,0 +1,37 @@
+<UserControl x:Class="ShoukatSons.POS.Wpf.Views.StockUpdate.StockUpdateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Focusable="True">
+  <Grid Margin="24">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <!-- Header + Exit button -->
+    <DockPanel Grid.Row="0" LastChildFill="True" Margin="0,0,0,12">
+      <TextBlock Text="{Binding Header}"
+                 FontSize="22"
+                 FontWeight="SemiBold"
+                 Foreground="White"
+                 VerticalAlignment="Center"/>
+      <Button Content="Exit to Dashboard"
+              Command="{Binding ExitCommand}"
+              HorizontalAlignment="Right"
+              Margin="12,0,0,0"
+              Padding="12,6"/>
+    </DockPanel>
+
+    <!-- Main placeholder area -->
+    <Border Grid.Row="1"
+            Padding="16"
+            CornerRadius="8"
+            Background="#0F1A33"
+            BorderBrush="#1F2B4D"
+            BorderThickness="1">
+      <TextBlock Text="{Binding Info}"
+                 Foreground="#BFD1FF"
+                 FontSize="14"/>
+    </Border>
+  </Grid>
+</UserControl>

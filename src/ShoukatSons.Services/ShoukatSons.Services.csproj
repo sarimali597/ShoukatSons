@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!--
+    Exclude archived/old code and the legacy POS implementations
+    (including the broken ServiceRegistry.cs)
+  -->
+  <ItemGroup>
+    <Compile Remove="..\ShoukatSonsold\**\*.cs" />
+    <Compile Remove="ShoukatSonsold\**\*.cs" />
+    <Compile Remove="Implementations\POS\**\*.cs" />
+    <Compile Remove="Mapping\**\*.cs" />
+    <Compile Remove="ServiceRegistry.cs" />
+  </ItemGroup>
+
+  <!-- Core & Data reference so we see POSDbContext, entities, mappings -->
+  <ItemGroup>
+    <ProjectReference Include="..\ShoukatSons.Core\ShoukatSons.Core.csproj" />
+    <ProjectReference Include="..\ShoukatSons.Data\ShoukatSons.Data.csproj" />
+  </ItemGroup>
+
+  <!-- EF Core + Barcode printing dependencies -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.8" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.7" />
+    <PackageReference Include="ZXing.Net" Version="0.16.10" />
+    <PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility" Version="0.16.10" />
+  </ItemGroup>
+
+</Project>

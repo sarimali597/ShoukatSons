@@ -1,0 +1,73 @@
+<UserControl x:Class="ShoukatSons.POS.Wpf.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Grid Margin="24">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <TextBlock Text="Sign in"
+               FontSize="28"
+               Foreground="White"
+               Margin="4,0,0,16"
+               FontWeight="SemiBold"/>
+
+    <Border Grid.Row="1"
+            CornerRadius="10"
+            Background="#0F1A33"
+            Padding="24">
+      <!-- Removed Spacing, replaced with Margin on children -->
+      <StackPanel Orientation="Vertical">
+        
+        <TextBlock Text="Username"
+                   Foreground="#BFD1FF"
+                   Margin="0,0,0,12"/>
+        
+        <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                 Height="36"
+                 Padding="8"
+                 BorderBrush="#29407A"
+                 Background="#13204A"
+                 Foreground="White"
+                 Margin="0,0,0,12"/>
+        
+        <TextBlock Text="Password"
+                   Foreground="#BFD1FF"
+                   Margin="0,0,0,8"/>
+        
+        <PasswordBox Height="36"
+                     Padding="8"
+                     BorderBrush="#29407A"
+                     Background="#13204A"
+                     Foreground="White"
+                     x:Name="PasswordBox"
+                     Margin="0,0,0,12"/>
+        
+        <Button Content="Sign in"
+                Height="38"
+                Margin="0,0,0,12"
+                Background="#2E6CF6"
+                Foreground="White"
+                Command="{Binding SignInCommand}"
+                CommandParameter="{Binding ElementName=PasswordBox, Path=Password}">
+          <Button.Style>
+            <Style TargetType="Button">
+              <Setter Property="IsEnabled" Value="True"/>
+              <Style.Triggers>
+                <DataTrigger Binding="{Binding Username}" Value="">
+                  <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+              </Style.Triggers>
+            </Style>
+          </Button.Style>
+        </Button>
+
+        <TextBlock Foreground="#7F93C9"
+                   Text="Tip: Enter any username and password with at least 3 characters for now."
+                   FontSize="12"
+                   Margin="0,0,0,0"/>
+      </StackPanel>
+    </Border>
+  </Grid>
+</UserControl>

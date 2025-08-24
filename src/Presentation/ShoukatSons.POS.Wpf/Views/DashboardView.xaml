@@ -1,0 +1,178 @@
+<UserControl x:Class="ShoukatSons.POS.Wpf.Views.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Focusable="True">
+  <UserControl.Resources>
+    <!-- Reusable style for navigation buttons -->
+    <Style x:Key="NavButtonStyle" TargetType="Button">
+      <Setter Property="Width" Value="160"/>
+      <Setter Property="Height" Value="44"/>
+      <Setter Property="Margin" Value="0,0,12,12"/>
+      <Setter Property="Padding" Value="12,6"/>
+      <Setter Property="Background" Value="#2E6CF6"/>
+      <Setter Property="Foreground" Value="White"/>
+      <Setter Property="BorderBrush" Value="#274CCF"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="Cursor" Value="Hand"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Border CornerRadius="8"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+              <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#3B78FF"/>
+              </Trigger>
+              <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="#255DE0"/>
+              </Trigger>
+              <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.6"/>
+                <Setter Property="Cursor" Value="Arrow"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <!-- Card style -->
+    <Style x:Key="CardStyle" TargetType="Border">
+      <Setter Property="CornerRadius" Value="10"/>
+      <Setter Property="Background" Value="#0F1A33"/>
+      <Setter Property="Padding" Value="24"/>
+      <Setter Property="BorderBrush" Value="#1F2B4D"/>
+      <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+  </UserControl.Resources>
+
+  <!-- Keyboard shortcuts -->
+  <UserControl.InputBindings>
+    <KeyBinding Key="D" Modifiers="Ctrl" Command="{Binding NavigateProductsCommand}"/>     <!-- Ctrl+D = Products -->
+    <KeyBinding Key="S" Modifiers="Ctrl" Command="{Binding NavigatePOSCommand}"/>          <!-- Ctrl+S = POS (Sales) -->
+    <KeyBinding Key="B" Modifiers="Ctrl" Command="{Binding NavigateBarcodePrintCommand}"/> <!-- Ctrl+B = Barcode Print -->
+    <KeyBinding Key="P" Modifiers="Ctrl" Command="{Binding TestPrintCommand}"/>            <!-- Ctrl+P = Test Print -->
+  </UserControl.InputBindings>
+
+  <Grid Margin="24">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <!-- Header bar -->
+    <Grid Grid.Row="0">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="Auto"/>
+      </Grid.ColumnDefinitions>
+
+      <TextBlock Grid.Column="0"
+                 Text="{Binding ShopTitle}"
+                 FontSize="24"
+                 FontWeight="SemiBold"
+                 Foreground="White"
+                 VerticalAlignment="Center"/>
+
+      <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+        <Border Background="#1B2A52" Padding="10,5" CornerRadius="6" Margin="12,0,0,0">
+          <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <Ellipse Width="8" Height="8" Fill="#9FD17F" VerticalAlignment="Center" Margin="0,0,8,0"/>
+            <TextBlock Text="Online" Foreground="#9FD17F" />
+          </StackPanel>
+        </Border>
+      </StackPanel>
+    </Grid>
+
+    <!-- Main content -->
+    <Grid Grid.Row="1">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+
+      <!-- Quick intro -->
+      <Border Grid.Row="0" Style="{StaticResource CardStyle}" Margin="0,16,0,12">
+        <StackPanel>
+          <TextBlock Text="{Binding Greeting}" Foreground="#BFD1FF" FontSize="16"/>
+          <TextBlock Text="Use the buttons below or press: Ctrl+D (Products), Ctrl+S (POS), Ctrl+B (Barcode Print), Ctrl+P (Test Print)"
+                     Foreground="#7F93C9" Margin="0,6,0,0" FontSize="12"/>
+        </StackPanel>
+      </Border>
+
+      <!-- Navigation cards -->
+      <Border Grid.Row="1" Style="{StaticResource CardStyle}">
+        <DockPanel LastChildFill="True">
+          <WrapPanel DockPanel.Dock="Top" ItemWidth="160" ItemHeight="44">
+            <Button Style="{StaticResource NavButtonStyle}"
+                    Content="Products"
+                    Command="{Binding NavigateProductsCommand}">
+              <Button.ToolTip>
+                <ToolTip Content="Go to Products (Ctrl+D)"/>
+              </Button.ToolTip>
+            </Button>
+
+            <Button Style="{StaticResource NavButtonStyle}"
+                    Content="POS"
+                    Command="{Binding NavigatePOSCommand}">
+              <Button.ToolTip>
+                <ToolTip Content="Go to POS (Ctrl+S)"/>
+              </Button.ToolTip>
+            </Button>
+
+            <Button Style="{StaticResource NavButtonStyle}"
+                    Content="Barcode Print"
+                    Command="{Binding NavigateBarcodePrintCommand}">
+              <Button.ToolTip>
+                <ToolTip Content="Go to Barcode Print (Ctrl+B)"/>
+              </Button.ToolTip>
+            </Button>
+
+            <Button Style="{StaticResource NavButtonStyle}"
+                    Content="Test Print"
+                    Command="{Binding TestPrintCommand}">
+              <Button.ToolTip>
+                <ToolTip Content="Send a test receipt to the default printer (Ctrl+P)"/>
+              </Button.ToolTip>
+            </Button>
+          </WrapPanel>
+
+          <!-- Placeholder area for future KPIs/charts -->
+          <Grid Margin="0,12,0,0">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Margin="0,0,12,0" Padding="16" Background="#0D1530" CornerRadius="8" BorderBrush="#1B2A52" BorderThickness="1">
+              <StackPanel>
+                <TextBlock Text="Today Sales" Foreground="#7F93C9" />
+                <TextBlock Text="—" Foreground="White" FontSize="20" FontWeight="SemiBold" Margin="0,6,0,0"/>
+              </StackPanel>
+            </Border>
+
+            <Border Grid.Column="1" Margin="0,0,12,0" Padding="16" Background="#0D1530" CornerRadius="8" BorderBrush="#1B2A52" BorderThickness="1">
+              <StackPanel>
+                <TextBlock Text="Products" Foreground="#7F93C9" />
+                <TextBlock Text="—" Foreground="White" FontSize="20" FontWeight="SemiBold" Margin="0,6,0,0"/>
+              </StackPanel>
+            </Border>
+
+            <Border Grid.Column="2" Padding="16" Background="#0D1530" CornerRadius="8" BorderBrush="#1B2A52" BorderThickness="1">
+              <StackPanel>
+                <TextBlock Text="Low Stock Alerts" Foreground="#7F93C9" />
+                <TextBlock Text="—" Foreground="White" FontSize="20" FontWeight="SemiBold" Margin="0,6,0,0"/>
+              </StackPanel>
+            </Border>
+          </Grid>
+        </DockPanel>
+      </Border>
+    </Grid>
+  </Grid>
+</UserControl>

@@ -1,0 +1,10 @@
+<Window x:Class="ShoukatSons.UI.Views.BarcodePrintWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Barcode Printing" Height="400" Width="600"
+        WindowStartupLocation="CenterOwner">
+    <Grid>
+        <TextBlock Text="Barcode Printing Screen" FontSize="20" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Grid>
+</Window>

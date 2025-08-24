@@ -1,0 +1,17 @@
+C:\ShoukatSons\src\ShoukatSons.Data\obj\Debug\net8.0\ShoukatSons.Data.csproj.AssemblyReference.cache
+C:\ShoukatSons\src\ShoukatSons.Data\obj\Debug\net8.0\ShoukatSons.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\ShoukatSons\src\ShoukatSons.Data\obj\Debug\net8.0\ShoukatSons.Data.AssemblyInfoInputs.cache
+C:\ShoukatSons\src\ShoukatSons.Data\obj\Debug\net8.0\ShoukatSons.Data.AssemblyInfo.cs
+C:\ShoukatSons\src\ShoukatSons.Data\obj\Debug\net8.0\ShoukatSons.Data.csproj.CoreCompileInputs.cache
+C:\ShoukatSons\src\ShoukatSons.Data\bin\Debug\net8.0\ShoukatSons.Data.deps.json
+C:\ShoukatSons\src\ShoukatSons.Data\bin\Debug\net8.0\ShoukatSons.Data.runtimeconfig.json
+C:\ShoukatSons\src\ShoukatSons.Data\bin\Debug\net8.0\ShoukatSons.Data.dll
+C:\ShoukatSons\src\ShoukatSons.Data\bin\Debug\net8.0\ShoukatSons.Data.pdb
+C:\ShoukatSons\src\ShoukatSons.Data\bin\Debug\net8.0\ShoukatSons.Core.dll
+C:\ShoukatSons\src\ShoukatSons.Data\bin\Debug\net8.0\ShoukatSons.Core.pdb
+C:\ShoukatSons\src\ShoukatSons.Data\obj\Debug\net8.0\ShoukatS.679D11A7.Up2Date
+C:\ShoukatSons\src\ShoukatSons.Data\obj\Debug\net8.0\ShoukatSons.Data.dll
+C:\ShoukatSons\src\ShoukatSons.Data\obj\Debug\net8.0\refint\ShoukatSons.Data.dll
+C:\ShoukatSons\src\ShoukatSons.Data\obj\Debug\net8.0\ShoukatSons.Data.pdb
+C:\ShoukatSons\src\ShoukatSons.Data\obj\Debug\net8.0\ShoukatSons.Data.genruntimeconfig.cache
+C:\ShoukatSons\src\ShoukatSons.Data\obj\Debug\net8.0\ref\ShoukatSons.Data.dll

@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Your shared services project -->
+    <ProjectReference Include="..\..\ShoukatSons.Services\ShoukatSons.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- 
+      Align all Microsoft.Extensions packages to 9.0.8 (matches your transitive Logging)
+      so there’s no downgrade.
+    -->
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.8" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.8" />
+    
+  </ItemGroup>
+</Project>

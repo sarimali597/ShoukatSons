@@ -1,0 +1,7 @@
+<Project>
+  <ItemGroup>
+    <!-- Block any archived/old trees from all projects -->
+    <Compile Remove="**\ShoukatSonsold\**\*.cs" />
+    <Compile Remove="..\ShoukatSonsold\**\*.cs" />
+  </ItemGroup>
+</Project>

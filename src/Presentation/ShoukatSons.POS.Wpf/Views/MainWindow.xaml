@@ -1,0 +1,11 @@
+<Window
+    x:Class="ShoukatSons.POS.Wpf.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="POS Shell"
+    Height="600" Width="800">
+
+  <Grid>
+    <ContentControl Content="{Binding CurrentViewModel}" />
+  </Grid>
+</Window>
